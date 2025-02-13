@@ -4,10 +4,10 @@ Content-Type: application/json
 
 {
 
-     "full_name": "Kimm taehyung",
-      "specialization": "psychology",
-      "experience_years": 27,
-      "contact_phone": "0789654321"
+     "full_name": "Cyrus Kimutai",
+      "specialization": "Physiotherapist",
+      "experience_years": 5,
+      "contact_phone": "0722227154"
 }
 ###
 PUT http://localhost:8000/api/therapists/1
@@ -15,7 +15,7 @@ Content-Type: application/json
 
 {
 
-     "contact_phone": "0789654322"
+     "contact_phone": "0722227154"
 }
 ###
 
