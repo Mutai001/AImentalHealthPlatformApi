@@ -1,0 +1,82 @@
+### Create a New Payment (Mpesa)
+POST http://localhost:8000/api/payments
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "session_id": 4,
+  "payment_method": "Mpesa",
+  "phone": "0722227152",
+  "amount": 5000,
+  "payment_status": "Pending",
+  "transaction_id": "MPESA123456783",
+  "merchant_request_id": "MERCHANT1234",
+  "checkout_request_id": "CHECKOUT451",
+  "payment_date": "2025-02-03T15:30:00Z"
+}
+
+### Create a New Payment (Stripe)
+POST http://localhost:8000/api/payments
+Content-Type: application/json
+
+{
+  "user_id": 1,
+  "session_id": 1,
+  "payment_method": "Stripe",
+  "amount": 5000,
+  "payment_status": "Pending",
+  "stripe_payment_id": "pi_3Jhdbnd2b1"
+}
+
+### Get All Payments
+GET http://localhost:8000/api/payments
+Content-Type: application/json
+
+### Get a Single Payment by ID
+GET http://localhost:8000/api/payments/1
+Content-Type: application/json
+
+### Update a Payment (Change Status)
+PATCH http://localhost:8000/api/payments/1
+Content-Type: application/json
+
+{
+  "payment_status": "Completed",
+  "transaction_id": "MPESA987654321"
+}
+
+### Delete a Payment
+DELETE http://localhost:8000/api/payments/3
+Content-Type: application/json
+
+### Initiate Mpesa STK Push
+POST http://localhost:8000/api/mpesa/stkpush
+Content-Type: application/json
+
+{
+  "phone": "254722227154",
+  "amount": "1"
+}
+
+### Simulate Mpesa STK Callback
+POST http://localhost:8000/api/mpesa/callback
+Content-Type: application/json
+
+{
+  "Body": {
+    "stkCallback": {
+      "MerchantRequestID": "MERCHANT1234",
+      "CheckoutRequestID": "CHECKOUT451",
+      "ResultCode": "0",
+      "ResultDesc": "Success. Request accepted for processing",
+      "CallbackMetadata": {
+        "Item": [
+          { "Name": "MpesaReceiptNumber", "Value": "MPESA174379" },
+          { "Name": "Amount", "Value": 5000 },
+          { "Name": "TransactionDate", "Value": "202502031530" },
+          { "Name": "PhoneNumber", "Value": "254722227154" }
+        ]
+      }
+    }
+  }
+}

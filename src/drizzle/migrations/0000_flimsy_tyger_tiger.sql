@@ -45,9 +45,15 @@ CREATE TABLE "payments" (
 	"amount" numeric(10, 2) NOT NULL,
 	"payment_status" varchar(50) DEFAULT 'Pending',
 	"payment_date" date DEFAULT now(),
-	"stripe_payment_id" text NOT NULL,
+	"payment_method" varchar(10) DEFAULT 'Mpesa' NOT NULL,
+	"stripe_payment_id" text,
+	"phone" varchar(15),
+	"transaction_id" varchar(100),
+	"merchant_request_id" varchar(100),
+	"checkout_request_id" varchar(100),
 	"created_at" timestamp DEFAULT now(),
-	"updated_at" timestamp DEFAULT now()
+	"updated_at" timestamp DEFAULT now(),
+	CONSTRAINT "payments_transaction_id_unique" UNIQUE("transaction_id")
 );
 --> statement-breakpoint
 CREATE TABLE "resources" (

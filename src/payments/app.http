@@ -7,6 +7,7 @@ Content-Type: application/json
    "user_id":1,
    "session_id":1,
    "amount": 5000,
+    "payment_method":"Mpesa",
    "payment_status":"paid",
    "payment_date": "2025-02-05",
    "stripe_payment_id": "1"

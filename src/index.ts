@@ -12,6 +12,8 @@ import {bookingRouter } from './bookings/bookings.router'
 import {resourcesRouter} from './resources/resources.router'
 import { serve } from '@hono/node-server'
 import {cors} from 'hono/cors'
+import mpesaRouter from "./mpesa/mpesa.router"; // ✅ Correct Import
+
 
 const app = new Hono();
 app.get('/', (c) => {
@@ -31,6 +33,7 @@ app.route("/api", feedbackRouter)
 app.route("/api", paymentRouter)
 app.route("/api", bookingRouter)
 app.route("/api", resourcesRouter)
+app.route("/api/mpesa", mpesaRouter); // Mount the router correctly
 serve({
     fetch: app.fetch,
     port:Number(process.env.PORT)

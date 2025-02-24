@@ -1,3 +1,4 @@
+// Purpose: Service for payments.
 import {eq} from "drizzle-orm";
 import db from "../drizzle/db";
  import { TIPayment, TSPayment, payments } from "../drizzle/schema";
@@ -17,11 +18,26 @@ export const getPaymentService = async (id: number): Promise<TIPayment | undefin
     });
 
 }
-export const createPaymentService = async (user: TIPayment) => {
-    await db.insert(payments).values(user)
-    return "payment created successfully";
+// export const createPaymentService = async (user: TIPayment) => {
+//     await db.insert(payments).values(user)
+//     return "payment created successfully";
 
-}
+// }
+// Create payment
+export const createPaymentService = async (paymentData: any) => {
+  try {
+    const insertedPayment = await db.insert(payments).values(paymentData).returning();
+    console.log("💾 Payment Saved:", insertedPayment);
+    return insertedPayment;
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error("🚨 Error saving payment:", error.message);
+    } else {
+      console.error("🚨 Error saving payment:", error);
+    }
+    throw new Error("Failed to save payment");
+  }
+};
 
 export const updatePaymentService = async (id: number, user: TIPayment) => {
     await db.update(payments).set(user).where(eq(payments.id, id))

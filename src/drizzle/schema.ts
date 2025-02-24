@@ -99,26 +99,40 @@ import {
   
     // Payments Table
     export const payments = pgTable("payments", {
-      id: serial("payment_id").primaryKey(),  // Primary Key for the payment
+      id: serial("payment_id").primaryKey(),
+    
+      // Foreign Keys
       user_id: integer("user_id")
         .notNull()
-        .references(() => users.id), // Foreign key to users
+        .references(() => users.id),
       session_id: integer("session_id")
         .notNull()
-        .references(() => sessions.id), // Foreign key to sessions
-      amount: decimal("amount", { precision: 10, scale: 2 })
-        .notNull(), // Store payment amounts up to two decimal places
-      payment_status: varchar("payment_status", { length: 50 })
-        .default("Pending"), // Track payment status
-      payment_date: date("payment_date")
-        .defaultNow(), // Track payment date
-      stripe_payment_id: text("stripe_payment_id")
-        .notNull(), // Store Stripe payment intent ID
-      created_at: timestamp("created_at")
-        .defaultNow(), // Creation timestamp
-      updated_at: timestamp("updated_at")
-        .defaultNow(), // Updated timestamp
+        .references(() => sessions.id),
+    
+      // Payment Details
+      amount: decimal("amount", { precision: 10, scale: 2 }).notNull(),
+      payment_status: varchar("payment_status", { length: 50 }).default("Pending"),
+      payment_date: date("payment_date").defaultNow(),
+    
+      // Payment Method: Stripe or Mpesa
+      payment_method: varchar("payment_method", { length: 10 }) // "Mpesa" | "Stripe"
+        .notNull()
+        .default("Mpesa"),
+    
+      // Stripe Fields
+      stripe_payment_id: text("stripe_payment_id"), // Nullable if Mpesa is used
+    
+      // Mpesa Fields
+      phone: varchar("phone", { length: 15 }), // Nullable if Stripe is used
+      transaction_id: varchar("transaction_id", { length: 100 }).unique(),
+      merchant_request_id: varchar("merchant_request_id", { length: 100 }),
+      checkout_request_id: varchar("checkout_request_id", { length: 100 }),
+    
+      // Timestamps
+      created_at: timestamp("created_at").defaultNow(),
+      updated_at: timestamp("updated_at").defaultNow(),
     });
+    
   
   export const paymentsRelations = relations(payments, ({ one }) => ({
     user: one(users, { fields: [payments.user_id], references: [users.id] }),

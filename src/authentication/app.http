@@ -5,12 +5,12 @@ Content-Type: application/json
 
 {
 
-  "full_name": "admin one ",
-  "email": "admin1@gmail.com",
+  "full_name": "cyrus admin",
+  "email": "cyrusadmin@gmail.com",
   "contact_phone": "0722227154",
   "address": "10 kenya",
   "role": "admin",
-  "password": "admin1"
+  "password": "cyrus1234"
 }
 ###
 ###
@@ -33,20 +33,20 @@ Content-Type: application/json
 
 {
 
-   "full_name": "user one",
-   "email": "user1@gmail.com",
+   "full_name": "cyrus admin",
+   "email": "cyrusadmin@gmail.com",
    "contact_phone": "0712345678",
    "address": "123 Kenya",
-   "role": "user",
-  "password": "user1"
+   "role": "usadminer",
+  "password": "cyrus1234"
 }
 ###
 POST    http://localhost:8000/api/login
 Content-Type: application/json
  
   {  
-    "email": "admin1@gmail.com",
-    "password": "admin1"
+    "email": "cyrusadmin@gmail.com",
+    "password": "cyrusadmin"
   }
 
 ###
