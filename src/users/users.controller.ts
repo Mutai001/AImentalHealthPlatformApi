@@ -2,6 +2,8 @@
 import { Context } from "hono";
 import { usersService, getuserservice, createuserservice, updateuserservice, deleteuserservice,} from "./users.service";
 import*as bcrypt from "bcrypt";
+
+// Fetch all users
 export const listUsers = async (c: Context) => {
     try {
         //limit the number of users to be returned
@@ -18,6 +20,7 @@ export const listUsers = async (c: Context) => {
     }
 }
 
+// Fetch a single user
 export const getUser = async (c: Context) => {
     const id = parseInt(c.req.param("id"));
     if (isNaN(id)) return c.text("Invalid ID", 400);
@@ -28,6 +31,8 @@ export const getUser = async (c: Context) => {
     }
     return c.json(user, 200);
 }
+
+// Create a user
 export const createUser = async (c: Context) => {
     try {
         const user = await c.req.json();
@@ -45,6 +50,7 @@ export const createUser = async (c: Context) => {
     }
 }
 
+// Update a user
 export const updateUser = async (c: Context) => {
     const id = parseInt(c.req.param("id"));
     if (isNaN(id)) return c.text("Invalid ID", 400);
@@ -65,6 +71,7 @@ export const updateUser = async (c: Context) => {
     }
 }
 
+// Delete a user
 export const deleteUser = async (c: Context) => {
     const id = Number(c.req.param("id"));
     if (isNaN(id)) return c.text("Invalid ID", 400);

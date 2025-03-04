@@ -2,6 +2,7 @@
 import {eq} from "drizzle-orm";
 import db from "../drizzle/db";
  import { TIPayment, TSPayment, payments } from "../drizzle/schema";
+import { paymentsSchema } from "./validator";
   export const paymentService = async (limit?: number): Promise<TSPayment[] | null> => {
     if (limit) {
       return await db.query.payments.findMany({
@@ -26,16 +27,17 @@ export const getPaymentService = async (id: number): Promise<TIPayment | undefin
 // Create payment
 export const createPaymentService = async (paymentData: any) => {
   try {
-    const insertedPayment = await db.insert(payments).values(paymentData).returning();
-    console.log("💾 Payment Saved:", insertedPayment);
-    return insertedPayment;
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("🚨 Error saving payment:", error.message);
-    } else {
-      console.error("🚨 Error saving payment:", error);
-    }
-    throw new Error("Failed to save payment");
+    // Validate input data with Zod
+    const validatedData = paymentsSchema.parse(paymentData);
+
+    // Insert into payments table
+    await db.insert(payments).values({ ...validatedData, amount: validatedData.amount.toString(), payment_date: validatedData.payment_date.toISOString() });
+    console.log("✅ Payment successfully recorded:", validatedData);
+
+    return { success: true, message: "Payment recorded successfully" };
+  } catch (error: any) {
+    console.error("🚨 Payment Insertion Error:", error.message);
+    throw new Error("Failed to insert payment data");
   }
 };
 
