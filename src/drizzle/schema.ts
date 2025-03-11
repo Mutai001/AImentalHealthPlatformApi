@@ -180,11 +180,19 @@ export const bookings = pgTable("bookings", {
     therapist_id: integer("therapist_id").notNull().references(() => therapists.id),
     session_date: date("session_date").notNull(),
     booking_status: varchar("booking_status", { length: 50 }).default("Pending"), // Could be "Confirmed", "Cancelled", etc.
-    // created_at: timestamp("created_at").defaultNow(),
-    // updated_at: timestamp("updated_at").defaultNow(),
-    created_at: date ("created_at").defaultNow(),
-    updated_at: date ("updated_at").defaultNow(),
+    bookingDate: timestamp('booking_date').notNull(),
+    // created_at: date ("created_at").defaultNow(),
+    // updated_at: date ("updated_at").defaultNow(),
   });
+
+  // export const bookings = pgTable('bookings', {
+  //   id: serial('id').primaryKey(),
+  //   therapistId: integer('therapist_id').notNull(),
+  //   userId: integer('user_id').notNull(),
+  //   bookingDate: timestamp('booking_date').notNull(),
+  // });
+  
+
   
   export const bookingsRelations = relations(bookings, ({ one }) => ({
     user: one(users, { fields: [bookings.user_id], references: [users.id] }),
