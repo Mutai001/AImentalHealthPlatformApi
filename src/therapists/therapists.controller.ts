@@ -1,4 +1,4 @@
-
+//Therapist controller 
 import { Context } from "hono";
 import {therapistsService, getTherapistservice, createTherapistservice, updateTherapistservice, deleteTherapistservice} from "./therapists.service";
 import*as bcrypt from "bcrypt";

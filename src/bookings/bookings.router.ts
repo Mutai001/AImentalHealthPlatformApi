@@ -1,3 +1,4 @@
+//Bookings Router
 import { Hono } from "hono";
 import { listBookings,getBookings , createBookings, updateBookings, deleteBookings } from "./bookings.controller"
 import { zValidator } from "@hono/zod-validator";

@@ -1,4 +1,4 @@
-
+//Booking controller
 import { Context } from "hono";
 import {BookingsService, getBookingsService, createBookingsService, updateBookingsService, deleteBookingsService} from "./bookings.service";
 import*as bcrypt from "bcrypt";

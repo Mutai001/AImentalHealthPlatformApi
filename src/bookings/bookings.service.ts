@@ -1,3 +1,4 @@
+//booking service
 import {eq} from "drizzle-orm";
 import db from "../drizzle/db";
  import { TIBookings, TSBookings, bookings } from "../drizzle/schema";

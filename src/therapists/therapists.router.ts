@@ -1,3 +1,4 @@
+//therapist router
 import { Hono } from "hono";
 import { listtherapists,gettherapists , createtherapists, updatetherapists, deletetherapists } from "./therapists.controller"
 import { zValidator } from "@hono/zod-validator";

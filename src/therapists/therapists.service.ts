@@ -1,3 +1,4 @@
+//theatherapists service
 import {eq} from "drizzle-orm";
 import db from "../drizzle/db";
 import { TITherapists, TSTherapists, therapists } from "../drizzle/schema";
