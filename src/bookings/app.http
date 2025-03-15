@@ -1,4 +1,8 @@
 ###
+//Fetch all booking
+GET http://localhost:8000/api/bookings
+
+### Create a booking
 POST http://localhost:8000/api/bookings
 Content-Type: application/json
 
