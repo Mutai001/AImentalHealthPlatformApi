@@ -5,9 +5,9 @@ Content-Type: application/json
 
 {
 
-  "full_name": "cyrus admin",
-  "email": "cyrusadmin@gmail.com",
-  "contact_phone": "0722227154",
+  "full_name": "cyrus admin2",
+  "email": "cyrusadmin2@gmail.com",
+  "contact_phone": "0722227054",
   "address": "10 kenya",
   "role": "admin",
   "password": "cyrus1234"
