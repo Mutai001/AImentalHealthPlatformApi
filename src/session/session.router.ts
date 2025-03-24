@@ -6,10 +6,14 @@ import { adminRoleAuth } from '../middleware/bearAuth'
 import {therapistRoleAuth } from '../middleware/bearAuth'
 export const sessionRouter = new Hono();
 //get all session
-sessionRouter.get("/session",adminRoleAuth ,listsession) 
+sessionRouter.get("/session"
+    // ,adminRoleAuth 
+    ,listsession) 
 
 //get a single therapist   api/therapist/1
-sessionRouter.get("/session/:id",adminRoleAuth, getsession)
+sessionRouter.get("/session/:id"
+    // ,adminRoleAuth
+    , getsession)
 
 // create a therapist 
 sessionRouter.post("/session", zValidator('json', sessionSchema, (result, c) => {
@@ -21,5 +25,7 @@ sessionRouter.post("/session", zValidator('json', sessionSchema, (result, c) => 
 //update a therapist
 sessionRouter.put("/session/:id", updatesession) 
 
-sessionRouter.delete("/session/:id",therapistRoleAuth,adminRoleAuth, deletesession)
+sessionRouter.delete("/session/:id",
+    //therapistRoleAuth,adminRoleAuth,
+     deletesession)
 

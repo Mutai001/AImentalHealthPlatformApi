@@ -6,10 +6,14 @@ import { bookingsSchema} from "./validator";
 import { adminRoleAuth } from '../middleware/bearAuth'
 export const bookingRouter = new Hono();
 //get all Bookings
-bookingRouter.get("/bookings",adminRoleAuth ,listBookings) 
+bookingRouter.get("/bookings"
+    // ,adminRoleAuth 
+    ,listBookings) 
 
 //get a single therapist   api/therapist/1
-bookingRouter.get("/bookings/:id",adminRoleAuth, getBookings)
+bookingRouter.get("/bookings/:id",
+    // adminRoleAuth, 
+    getBookings)
 
 // create a therapist 
 bookingRouter.post("/bookings", zValidator('json', bookingsSchema, (result, c) => {

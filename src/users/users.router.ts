@@ -5,10 +5,14 @@ import { usersSchema } from "./validator";
 import { adminRoleAuth } from '../middleware/bearAuth'
 export const userRouter = new Hono();
 //get all users
-userRouter.get("/users",adminRoleAuth ,listUsers) 
+userRouter.get("/users",
+    // adminRoleAuth ,
+    listUsers) 
 
 //get a single user   api/users/1
-userRouter.get("/users/:id",adminRoleAuth, getUser)
+userRouter.get("/users/:id",
+    // adminRoleAuth,
+     getUser)
 
 // create a user 
 userRouter.post("/users", zValidator('json', usersSchema, (result, c) => {
@@ -21,5 +25,7 @@ userRouter.post("/users", zValidator('json', usersSchema, (result, c) => {
 userRouter.put("/users/:id", updateUser) 
 
 //delete a user
-userRouter.delete("/users/:id",adminRoleAuth, deleteUser)
+userRouter.delete("/users/:id",
+    // adminRoleAuth,
+     deleteUser)
 
