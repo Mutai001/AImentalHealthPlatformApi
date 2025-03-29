@@ -180,7 +180,6 @@ export const bookings = pgTable("bookings", {
     therapist_id: integer("therapist_id").notNull().references(() => therapists.id),
     session_date: date("session_date").notNull(),
     booking_status: varchar("booking_status", { length: 50 }).default("Pending"), // Could be "Confirmed", "Cancelled", etc.
-    // bookingDate: timestamp('booking_date').notNull(),
     created_at: date ("created_at").defaultNow(),
     updated_at: date ("updated_at").defaultNow(),
   });
