@@ -6,10 +6,14 @@ import { therapistSchema } from "./validator";
 import { adminRoleAuth } from '../middleware/bearAuth'
 export const therapistRouter = new Hono();
 //get all therapists
-therapistRouter.get("/therapists",adminRoleAuth ,listtherapists) 
+therapistRouter.get("/therapists",
+    // adminRoleAuth ,
+    listtherapists) 
 
 //get a single therapist   api/therapist/1
-therapistRouter.get("/therapists/:id",adminRoleAuth, gettherapists)
+therapistRouter.get("/therapists/:id",
+    // adminRoleAuth, 
+    gettherapists)
 
 // create a therapist 
 therapistRouter.post("/therapists", zValidator('json', therapistSchema, (result, c) => {
