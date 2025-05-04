@@ -12,7 +12,7 @@ Content-Type: application/json
 
 {
   "phoneNumber": "254722227154",
-  "amount": 1,
+  "amount": 2,
   "referenceCode": "TEST123",
   "description": "Test Payment"
 }
